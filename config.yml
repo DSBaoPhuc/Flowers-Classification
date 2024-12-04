@@ -1,0 +1,17 @@
+default:
+  base_dir: "E:\\Github_destop\\Flowers-Classification"
+
+loader:
+  traindata_dir: "dataset\\train"
+  img_size: 180
+  batch_size: 32
+  validation_split: 0.2
+  
+
+augmentation:
+  flip_horizontal: true
+  rotation_range: 0.1
+  zoom_range: 0.1
+  translation_range: 0.1
+  brightness_range: 0.2
+  crop_percentage: 0.9
