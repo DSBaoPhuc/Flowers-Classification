@@ -3,10 +3,13 @@ import yaml
 import random
 import tensorflow as tf
 from tensorflow.python.keras.models import Sequential
+import numpy as np
 # from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from tensorflow.python.keras import layers
-from tensorflow.python.keras.layers import RandomRotation
-from tensorflow.keras.layers import Rescaling
+# from tensorflow.python.keras.layers import RandomRotation
+# from tensorflow.keras.layers import Rescaling
+# from tensorflow.keras.layers import RandomRotation, RandomFlip, RandomZoom, RandomTranslation, RandomBrightness, Cropping2D
+
 # from tensorflow.python.keras.optimizers import RMSprop
 # from tensorflow.keras.preprocessing import image_dataset_from_directory
 # import configparser
@@ -43,6 +46,9 @@ class PreprocessingData:
         self.translation_range = config['augmentation']['translation_range']
         self.brightness_range = config['augmentation']['brightness_range']
         self.crop_percentage = config['augmentation']['crop_percentage']
+
+        #lấy thống tin cho phần data_pretrains
+        self.data_pretrains = os.path.join(self.base_dir, config['data_pretrains']['data_pretrains'].strip('/'))
 
         # Kiểm tra đường dẫn
         if not os.path.exists(self.base_dir):
@@ -212,6 +218,24 @@ class PreprocessingData:
         val_ds = val_ds.map(lambda x, y: (rescale_lambda(x), y))
 
         return train_ds, val_ds
+    
+    def save_pretrain(self,dataset,output_file = None, prefix = str):
+        """
+        Lưu một tf.data.Dataset vào folder dưới dạng các file .npz.
+    
+        Args:
+            dataset (tf.data.Dataset): Dataset cần lưu.
+            folder_name (str): Đường dẫn tới folder lưu trữ.
+            prefix (str): Tiền tố cho tên file (ví dụ: 'train' hoặc 'val').
+        """
+        if output_file is None:
+            output_file = self.data_pretrains
+
+
+        for i, (images, labels) in enumerate(dataset):
+            file_path = os.path.join(output_file, f"{prefix}_batch_{i}.npz")
+            np.savez(file_path, images=images.numpy(), labels=labels.numpy())
+            print(f"Lưu batch {i} vào {file_path}")
 
 # Kiểm tra nhanh module khi chạy trực tiếp file
 if __name__ == "__main__":
@@ -227,16 +251,19 @@ if __name__ == "__main__":
     print("Splitting data...")
     train_ds, val_ds = preprocessing.split_data()
 
-    # Test data augmentation
-    print("Applying data augmentation (flip, rotate)...")
-    augmented_train_ds = train_ds.map(lambda x, y: (preprocessing.data_augmentation(['rotate', 'flip'])(x), y))
+    # # Test data augmentation
+    # print("Applying data augmentation (flip, rotate)...")
+    # augmented_train_ds = train_ds.map(lambda x, y: (preprocessing.data_augmentation(['rotate', 'flip'])(x), y))
 
     # Test rescaling data without augmentation
     print("Rescaling data without augmentation...")
     rescaled_train_ds, rescaled_val_ds = preprocessing.rescale_data(train_ds, val_ds, apply_augmentation=False)
     
-    # Test rescaling data with augmentation
-    print("Rescaling data with augmentation...")
-    rescaled_train_ds, rescaled_val_ds = preprocessing.rescale_data(train_ds, val_ds, apply_augmentation=True)
+    print("Save data after processing...")
+    preprocessing.save_pretrain(train_ds,prefix = "train")
+    preprocessing.save_pretrain(val_ds,prefix ="val")
+    # # Test rescaling data with augmentation
+    # print("Rescaling data with augmentation...")
+    # rescaled_train_ds, rescaled_val_ds = preprocessing.rescale_data(train_ds, val_ds, apply_augmentation=True)
     
     print("All tests completed!")

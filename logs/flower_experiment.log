@@ -1,0 +1,33 @@
+2024-12-06 00:42:47,980 - INFO - Starting training experiment: flower_experiment
+2024-12-06 00:42:47,980 - INFO - Model: None
+2024-12-06 00:42:47,982 - INFO - Training dataset size: 69
+2024-12-06 00:42:47,982 - INFO - Validation dataset size: 18
+2024-12-06 00:43:12,390 - INFO - Starting training experiment: flower_experiment
+2024-12-06 00:43:12,390 - INFO - Model: None
+2024-12-06 00:43:12,391 - INFO - Training dataset size: 69
+2024-12-06 00:43:12,391 - INFO - Validation dataset size: 18
+2024-12-06 00:50:54,838 - INFO - Starting training experiment: flower_experiment
+2024-12-06 00:50:54,838 - INFO - Model: None
+2024-12-06 00:50:54,839 - INFO - Training dataset size: 69
+2024-12-06 00:50:54,839 - INFO - Validation dataset size: 18
+2024-12-06 00:50:54,864 - INFO - Training model for 15 epochs...
+2024-12-06 00:52:33,642 - INFO - Starting training experiment: flower_experiment
+2024-12-06 00:52:33,643 - INFO - Model: None
+2024-12-06 00:52:33,643 - INFO - Training dataset size: 69
+2024-12-06 00:52:33,643 - INFO - Validation dataset size: 18
+2024-12-06 00:52:33,667 - INFO - Training model for 15 epochs...
+2024-12-06 00:54:55,281 - INFO - Starting training experiment: flower_experiment
+2024-12-06 00:54:55,281 - INFO - Model: None
+2024-12-06 00:54:55,282 - INFO - Training dataset size: 69
+2024-12-06 00:54:55,282 - INFO - Validation dataset size: 18
+2024-12-06 00:54:55,306 - INFO - Training model for 15 epochs...
+2024-12-06 00:56:20,778 - INFO - Starting training experiment: flower_experiment
+2024-12-06 00:56:20,778 - INFO - Model: None
+2024-12-06 00:56:20,778 - INFO - Training dataset size: 69
+2024-12-06 00:56:20,778 - INFO - Validation dataset size: 18
+2024-12-06 00:56:20,802 - INFO - Training model for 15 epochs...
+2024-12-06 00:59:51,179 - INFO - Starting training experiment: flower_experiment
+2024-12-06 00:59:51,179 - INFO - Model: None
+2024-12-06 00:59:51,180 - INFO - Training dataset size: 69
+2024-12-06 00:59:51,180 - INFO - Validation dataset size: 18
+2024-12-06 00:59:51,203 - INFO - Training model for 15 epochs...

@@ -15,3 +15,16 @@ augmentation:
   translation_range: 0.1
   brightness_range: 0.2
   crop_percentage: 0.9
+
+data_pretrains:
+  data_pretrains: "data_pretrains"
+
+train:
+  log_dir: "E:\\Github_destop\\Flowers-Classification\\logs"
+  input_shape: (128, 128, 3)
+  num_classes: 5
+  epochs : 15
+  dropout_rate: 0.2
+  learning_rate: 0.001
+  batch_size: 32
+  moder_dir: "E:\\Github_destop\\Flowers-Classification\\model"
