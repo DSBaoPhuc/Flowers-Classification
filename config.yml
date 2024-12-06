@@ -1,0 +1,17 @@
+loader:
+  traindata_dir: "dataset/flowers"
+  img_size: 180
+  batch_size: 32
+  validation_split: 0.2
+
+augmentation:
+  flip_horizontal: true
+  rotation_range: 0.1
+  zoom_range: 0.1
+  brightness_range: 0.2
+
+model:
+  saved_model_path: "models/Flower_Recog_Model.keras"
+
+classification:
+  flower_names: ["daisy", "dandelion", "rose", "sunflower", "tulip"]
