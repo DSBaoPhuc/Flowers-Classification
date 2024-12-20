@@ -82,17 +82,28 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# Name and ID
+course = "Machine Learning Platform"
+
 # Header
 st.markdown('<h1 class="header-title">Flower Classification</h1>', unsafe_allow_html=True)
 
 # Sidebar
+st.sidebar.markdown(
+    f"""
+    <div style="font-family: 'Arial', sans-serif; color: #333333; margin-bottom: 20px; ">
+        <div class="course">{course}</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 st.sidebar.title("Upload Options")
 upload_file = st.sidebar.file_uploader("Upload an Image", type=["jpg", "jpeg", "png"])
 url_input = st.sidebar.text_input("Or enter an Image URL")
 
 # Handle uploaded file
 if upload_file is not None:
-    st.image(upload_file, caption="Uploaded Image", use_column_width=True)
+    st.image(upload_file, caption="Uploaded Image", width=300)
     result = classify_image(upload_file, model, config)
     st.success(result)
 
@@ -105,7 +116,7 @@ if url_input:
             try:
                 image = Image.open(image_data)
                 image = image.convert("RGB")
-                st.image(image, caption="Image from URL", use_column_width=True)
+                st.image(image, caption="Image from URL", width=300)
 
                 # Save image to temporary buffer
                 img_buffer = BytesIO()
